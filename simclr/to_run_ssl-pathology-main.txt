@@ -1,0 +1,54 @@
+Train SimCLR with pathology data:
+
+CSV files:
+filename;label;slide_id;patch_id
+
+python simclr/main.py --training_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Train.csv" --test_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Test.csv" --validation_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Validation.csv" --data_input_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/All" --save_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/" --batch_size "128" --epochs "1" --dataset "cam" --load_checkpoint_dir "G:/My Drive/MMU Postdoc/ISDB Project/Codes and algorithms/Python Codes/Cytomine-python-client/examples/Classification-related/PyTorch/ozanciga_tenpercent_resnet18.ckpt"
+
+
+
+optional arguments:
+--feature_dim             Feature dim for latent vector [default value is 128]
+--temperature             Temperature used in softmax [default value is 0.5]
+--batch_size              Number of images per GPU in each mini-batch [default value is 512]
+--epochs                  Number of sweeps over the dataset to train [default value is 500]
+--dataset                 Dataset to use [default value is cam]
+--lr                      Starting learning rate [default value is 1e-3]
+--use_album               Bool to use Albumentations instead of Torchvision as augmentation library [default value is false]
+--image_size              Image size during training [default value is 224]
+--load_checkpoint_dir
+
+
+
+
+
+
+
+Evaluation:
+Discards multi-linear head and adds a single linear layer. Default mode is to keep pre-trained weights frozen, and only train the added linear layer. Please use the flag --finetune to train all weights.
+
+python simclr/linear.py --model_path "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/ssl_5ep/128_0.5_32_5_model_5.pth" --training_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Train.csv" --test_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Test.csv" --validation_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Validation.csv" --data_input_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/All" --save_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/" --finetune "" --batch_size "32" --epochs "5" 
+
+
+python simclr/linear.py --model_path "G:/My Drive/MMU Postdoc/ISDB Project/Codes and algorithms/Python Codes/Cytomine-python-client/examples/Classification-related/PyTorch/ozanciga_tenpercent_resnet18.ckpt" --training_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Train.csv" --test_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Test.csv" --validation_data_csv "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/NPC-21032023-Validation.csv" --data_input_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/All" --save_dir "G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/ozanciga-linear" --finetune "" --batch_size "32" --epochs "5" 
+
+
+
+required arguments:
+--model_path              Path to pre-trained SimCLR model
+OR --pretrained           Use ImageNet as pre-trained model
+OR --random               No pre-training, random intialization
+--training_data_csv
+--test_data_csv
+--validation_data_csv
+--data_input_dir
+--save_dir
+
+optional arguments:
+--finetune
+--batch_size              Number of images per GPU in each mini-batch [default value is 512]
+--epochs                  Number of sweeps over the dataset to train [default value is 100]
+--dataset                 Dataset to use [default value is cam]
+--lr                      Starting learning rate [default value is 1e-3]
+--use_album               Bool to use Albumentations instead of Torchvision as augmentation library [default value is false]
+--image_size              Image size during training [default value is 224]
