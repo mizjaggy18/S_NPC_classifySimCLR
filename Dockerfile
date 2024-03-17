@@ -16,7 +16,7 @@ RUN pip install lmdb
 RUN pip install albumentations
 
 RUN mkdir -p /models 
-ADD linear_model.pth /models/linear_model.pth
+ADD /models/linear_model.pth /models/linear_model.pth
 RUN chmod 444 /models/linear_model.pth
 
 ADD ozanciga_tenpercent_resnet18.ckpt /models/ozanciga_tenpercent_resnet18.ckpt
