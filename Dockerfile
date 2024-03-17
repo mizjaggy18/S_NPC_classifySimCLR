@@ -14,6 +14,7 @@ RUN pip install pillow
 RUN pip install tqdm
 RUN pip install lmdb
 RUN pip install albumentations
+RUN pip install geopandas
 
 RUN mkdir -p /models 
 ADD /models/linear_model.pth /models/linear_model.pth
