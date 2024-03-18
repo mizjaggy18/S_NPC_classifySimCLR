@@ -59,7 +59,7 @@ class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         # model_path="G:/My Drive/MMU Postdoc/ISDB Project/Codes and algorithms/Python Codes/Cytomine-python-client/examples/Classification-related/PyTorch/ozanciga_tenpercent_resnet18.ckpt" #ozanciga-pretrained
-        model_path="./models/ozanciga_tenpercent_resnet18.ckpt"
+        model_path="/models/ozanciga_tenpercent_resnet18.ckpt"
 
         # Load pre-trained model
         base_model = Model(pretrained=False)
@@ -119,7 +119,7 @@ def run(cyto_job, parameters):
     # ---- load linear model ---
     # linear_path="G:/My Drive/MMU Postdoc/Fareeds Work/Results and Codes/dataset/NPC/NPC-09032023/4-ozanciga-linear_100ep/linear_model.pth" #model-4
     model = Net()
-    linear_path="./models/linear_model.pth"
+    linear_path="/models/linear_model.pth"
     print("Loading linear (finetuned) model from: ",linear_path)
     
     state_dict = torch.load(linear_path, map_location='cuda:0')
