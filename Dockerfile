@@ -7,6 +7,7 @@ FROM cytomine/software-python3-base:v2.2.0
 RUN pip install numpy
 RUN pip install shapely
 RUN pip install torch
+RUN pip install pytorch_lightning
 RUN pip install torchvision
 RUN pip install pandas
 RUN pip install matplotlib
