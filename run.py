@@ -172,8 +172,9 @@ def run(cyto_job, parameters):
             roi_annotations.term = id_term
             roi_annotations.showWKT = True
             roi_annotations.showMeta = True
-            roi_annotations.showGIS = True
+            roi_annotations.showGIS = True            
             roi_annotations.showTerm = True
+            roi_annotations.includeAlgo=True
             roi_annotations.fetch()
             print(roi_annotations)
 
@@ -183,7 +184,7 @@ def run(cyto_job, parameters):
             pred_c3 = 0
             id_terms = 0
 
-            job.update(status=Job.RUNNING, progress=40, statusComment="Running splitpoly on ROI-WSI...")
+            job.update(status=Job.RUNNING, progress=40, statusComment="Running SimCLR on patches...")
 
             for i, roi in enumerate(roi_annotations):
                 #Get Cytomine ROI coordinates for remapping to whole-slide
