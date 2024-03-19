@@ -67,7 +67,7 @@ class Net(nn.Module):
             print('Loading base model from ', model_path)
 
             # load model trained from ozanciga       
-            state = torch.load(model_path, map_location='cuda:0')
+            state = torch.load(model_path, map_location=torch.device('cpu'))
 
             state_dict = state['state_dict']
             # print(state_dict)
@@ -122,7 +122,7 @@ def run(cyto_job, parameters):
     linear_path="/models/linear_model.pth"
     print("Loading linear (finetuned) model from: ",linear_path)
     
-    state_dict = torch.load(linear_path, map_location='cuda:0')
+    state_dict = torch.load(linear_path, map_location=torch.device('cpu'))
     for key in list(state_dict.keys()):
         state_dict[key.replace('module.', '').replace('resnet.', 'f.')] = state_dict.pop(key)
     model = load_model_weights(model, state_dict)
