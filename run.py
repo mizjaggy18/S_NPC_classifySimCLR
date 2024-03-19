@@ -127,7 +127,7 @@ def run(cyto_job, parameters):
         state_dict[key.replace('module.', '').replace('resnet.', 'f.')] = state_dict.pop(key)
     model = load_model_weights(model, state_dict)
 
-    model.cuda()
+    # model.cuda()
     model.eval()
     print(f"total params: \t{sum([np.prod(p.size()) for p in model.parameters()])}")
     #---------------------------
